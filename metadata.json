@@ -1,0 +1,8 @@
+{
+  "name": "Remix: HKN Auto",
+  "description": "Profesyonel Bakım ve Onarım Merkezi - Motor Mekanik Bakım Onarım ve Revizyon",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

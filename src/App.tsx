@@ -16,6 +16,14 @@ import BlogPostDetail from './components/BlogPostDetail';
 
 type PageName = 'home' | 'services' | 'about' | 'blog' | 'blog-detail' | 'contact';
 
+const pageRoutes: Record<Exclude<PageName, 'blog-detail'>, string> = {
+  home: '/',
+  services: '/hizmetler',
+  about: '/hakkimizda',
+  blog: '/blog',
+  contact: '/iletisim',
+};
+
 interface AppProps {
   initialPage?: PageName;
   initialBlogPostId?: string;
@@ -36,13 +44,11 @@ export default function App({ initialPage = 'home', initialBlogPostId = 'ai-moto
 
   const handleSelectService = useCallback((serviceName: string) => {
     setPreselectedService(serviceName);
-    setCurrentPage('contact');
-    window.scrollTo(0, 0);
+    window.location.assign(pageRoutes.contact);
   }, []);
 
   const handleOpenBooking = useCallback(() => {
-    setCurrentPage('contact');
-    window.scrollTo(0, 0);
+    window.location.assign(pageRoutes.contact);
   }, []);
 
   const handleAppointmentBooked = useCallback(() => {
@@ -50,6 +56,12 @@ export default function App({ initialPage = 'home', initialBlogPostId = 'ai-moto
   }, []);
 
   const handlePageChange = useCallback((page: 'home' | 'services' | 'about' | 'blog' | 'contact') => {
+    const route = pageRoutes[page];
+    if (window.location.pathname !== route) {
+      window.location.assign(route);
+      return;
+    }
+
     setCurrentPage(page);
     window.scrollTo(0, 0);
   }, []);

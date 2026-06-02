@@ -13,8 +13,8 @@ interface ServicesViewProps {
 
 export default function ServicesView({ onOpenBooking, onScrollToContact }: ServicesViewProps) {
   return (
-    <div className="fixed inset-0 z-30 bg-brand-bg/95 backdrop-blur-xl overflow-auto" id="services-page">
-      <div className="min-h-screen flex items-center justify-center px-6 py-10 md:px-12">
+    <div className="relative z-10 min-h-screen bg-brand-bg overflow-hidden" id="services-page">
+      <div className="min-h-screen flex items-center justify-center px-6 pb-10 pt-28 md:px-12 md:pt-32">
         <div className="relative w-full max-w-6xl">
           {/* Visual background lights */}
           <div className="absolute top-0 left-0 w-96 h-96 bg-brand-orange/[0.03] blur-[150px] pointer-events-none rounded-full" />

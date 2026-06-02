@@ -9,6 +9,9 @@ export const metadata: Metadata = {
     icon: siteConfig.logo,
     apple: siteConfig.logo,
   },
+  verification: {
+    google: 'LPvTpqUgrme1vnPhW4wJHzkJ7JE2DCl8LkAf9BwSdlk',
+  },
   formatDetection: {
     telephone: true,
     address: true,

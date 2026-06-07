@@ -1,7 +1,8 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Calendar, ArrowRight, CornerDownRight, Tag, BookOpen, ChevronLeft, ChevronRight } from 'lucide-react';
+import Image from 'next/image';
+import { Calendar, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 
 export interface BlogPost {
   id: string;
@@ -15,6 +16,8 @@ export interface BlogPost {
   author: string;
   authorRole: string;
   readTime: string;
+  image: string;
+  imageAlt: string;
 }
 
 export const BLOG_POSTS: BlogPost[] = [
@@ -41,7 +44,40 @@ export const BLOG_POSTS: BlogPost[] = [
     serviceId: 'HKN-MEK1',
     author: 'Merve Cahyir',
     authorRole: 'Genel Müdür & Otomotiv Servis Yöneticisi',
-    readTime: '6 dk okuma'
+    readTime: '6 dk okuma',
+    image: '/images/blog/sakarya-motor-revizyonu.jpg',
+    imageAlt: 'Sakarya motor mekanik bakım, motor revizyonu ve bilgisayarlı arıza teşhisi'
+  },
+  {
+    id: 'sakarya-cekici-yol-yardim',
+    title: 'Sakarya Çekici ve Yol Yardım: İlk 10 KM Ücretsiz',
+    excerpt: 'Sakarya, Serdivan ve çevresinde yolda kalan araçlar için hızlı çekici, oto kurtarma ve yol yardım hizmeti. HKN Auto çekici hizmetinde ilk 10 kilometre ücretsiz.',
+    content: `Araç arızası, lastik problemi, akü bitmesi veya kaza gibi beklenmedik durumlar sürücüler için hem güvenlik hem de zaman kaybı oluşturur. HKN Auto, Sakarya çekici ve yol yardım hizmetiyle aracınıza bulunduğunuz noktada hızlı destek sağlar. Çekici hizmetimizde ilk 10 kilometre ücretsizdir.
+
+    Sakarya Çekici ve Yol Yardım Hizmeti Neleri Kapsar?
+    Yol yardım süreci, konum bilgilerinizin alınmasıyla başlar. Aracın durumu telefon üzerinden değerlendirilir ve ihtiyaca göre çekici, oto kurtarma veya yerinde destek ekibi yönlendirilir. Araç güvenli biçimde yüklenerek HKN Auto servisine ya da talep ettiğiniz uygun noktaya taşınır.
+
+    SAKARYA YOL YARDIM SÜRECİ
+    - Hızlı Konum Tespiti: WhatsApp veya telefon üzerinden güncel konumunuz alınır.
+    - Güvenli Çekici Yönlendirmesi: Aracın tipine ve arıza durumuna uygun ekipman gönderilir.
+    - İlk 10 KM Ücretsiz: Sakarya çekici hizmetinde ilk 10 kilometre için taşıma ücreti alınmaz.
+    - Kontrollü Araç Yükleme: Tampon, jant, süspansiyon ve yürüyen aksama zarar vermeyen yükleme uygulanır.
+    - Servise Transfer: Araç HKN Auto Sakarya servisine veya belirlenen teslim noktasına ulaştırılır.
+
+    Hangi Durumlarda Yol Yardım Çağrılmalıdır?
+    Motorun çalışmaması, hararet, şanzıman arızası, akü bitmesi, lastik hasarı, yakıt sistemi problemi ve kaza sonrası aracın hareket edememesi durumlarında aracı zorlamadan profesyonel yardım istenmelidir. Arızalı aracı kullanmaya devam etmek mevcut hasarı büyütebilir.
+
+    Sakarya, Serdivan ve Çevresinde Çekici Desteği
+    HKN Auto; Sakarya, Serdivan, Adapazarı, Erenler ve Arifiye bölgelerinde çekici, oto kurtarma ve acil yol yardım taleplerine destek verir. Konumunuzu paylaşarak hızlı yönlendirme talep edebilir, aracınızın güvenli şekilde servise taşınmasını sağlayabilirsiniz.`,
+    date: '06 HAZİRAN 2026',
+    category: 'Yol Yardım',
+    categoryTag: 'GENERAL',
+    serviceId: 'HKN-YOL6',
+    author: 'Merve Cahyir',
+    authorRole: 'Genel Müdür & Otomotiv Servis Yöneticisi',
+    readTime: '5 dk okuma',
+    image: '/images/blog/sakarya-cekici-yol-yardim.jpg',
+    imageAlt: 'Sakarya çekici, oto kurtarma ve yol yardım hizmeti'
   },
   {
     id: 'yazilim-guncellemeleri',
@@ -66,7 +102,9 @@ export const BLOG_POSTS: BlogPost[] = [
     serviceId: 'HKN-ELK2',
     author: 'Merve Cahyir',
     authorRole: 'Genel Müdür & Otomotiv Servis Yöneticisi',
-    readTime: '5 dk okuma'
+    readTime: '5 dk okuma',
+    image: '/images/blog/sakarya-ecu-elektronik-ariza.jpg',
+    imageAlt: 'Sakarya oto elektronik arıza tespiti, ECU programlama ve diagnostik kontrol'
   },
   {
     id: 'fren-bakimi',
@@ -91,7 +129,9 @@ export const BLOG_POSTS: BlogPost[] = [
     serviceId: 'HKN-ONT3',
     author: 'Merve Cahyir',
     authorRole: 'Genel Müdür & Otomotiv Servis Yöneticisi',
-    readTime: '4 dk okuma'
+    readTime: '4 dk okuma',
+    image: '/images/blog/sakarya-on-takim-suspansiyon.jpg',
+    imageAlt: 'Sakarya ön takım tamiri, amortisör ve süspansiyon kontrolü'
   },
   {
     id: 'hata-kodlari-obd2',
@@ -116,7 +156,9 @@ export const BLOG_POSTS: BlogPost[] = [
     serviceId: 'HKN-PER4',
     author: 'Merve Cahyir',
     authorRole: 'Genel Müdür & Otomotiv Servis Yöneticisi',
-    readTime: '5 dk okuma'
+    readTime: '5 dk okuma',
+    image: '/images/blog/sakarya-periyodik-bakim.jpg',
+    imageAlt: 'Sakarya periyodik bakım, motor yağı ve filtre değişimi'
   },
   {
     id: 'sanziman-omru',
@@ -141,7 +183,9 @@ export const BLOG_POSTS: BlogPost[] = [
     serviceId: 'HKN-SAN5',
     author: 'Merve Cahyir',
     authorRole: 'Genel Müdür & Otomotiv Servis Yöneticisi',
-    readTime: '6 dk okuma'
+    readTime: '6 dk okuma',
+    image: '/images/blog/sakarya-otomatik-sanziman.jpg',
+    imageAlt: 'Sakarya otomatik şanzıman bakım, onarım ve revizyon hizmeti'
   },
   {
     id: 'rutin-kontrol-hizmeti',
@@ -170,7 +214,9 @@ export const BLOG_POSTS: BlogPost[] = [
     serviceId: 'HKN-RUT1',
     author: 'Merve Cahyir',
     authorRole: 'Genel Müdür & Otomotiv Servis Yöneticisi',
-    readTime: '5 dk okuma'
+    readTime: '5 dk okuma',
+    image: '/images/blog/sakarya-15-nokta-kontrol.jpg',
+    imageAlt: 'Sakarya 15 nokta araç kontrolü ve güvenli sürüş check-up hizmeti'
   }
 ];
 
@@ -182,8 +228,9 @@ interface BlogViewProps {
 export default function BlogView({ onSelectPost }: BlogViewProps) {
   const [selectedCategory, setSelectedCategory] = useState<string>('Tümü');
   const [currentPage, setCurrentPage] = useState<number>(1);
+  const featuredPost = BLOG_POSTS.find((post) => post.id === 'sakarya-cekici-yol-yardim') ?? BLOG_POSTS[0];
 
-  const categories = ['Tümü', 'Bakım', 'Elektronik', 'Tanılama', 'Performans'];
+  const categories = ['Tümü', 'Bakım', 'Elektronik', 'Tanılama', 'Performans', 'Yol Yardım'];
   const postsPerPage = 3;
 
   const filteredPosts = selectedCategory === 'Tümü'
@@ -208,7 +255,17 @@ export default function BlogView({ onSelectPost }: BlogViewProps) {
 
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         {/* Banner Featured Post Card matching layout exactly */}
-        <div className="mb-20 bg-gradient-to-br from-[#131b26] to-brand-bg-dark border border-brand-container-hover/80 rounded-xl p-6 md:p-10 relative overflow-hidden group shadow-2xl" id="featured-blog-banner">
+        <div className="mb-20 bg-gradient-to-br from-[#131b26] to-brand-bg-dark border border-brand-container-hover/80 rounded-xl p-6 md:p-10 relative overflow-hidden group shadow-2xl min-h-[430px] flex items-end" id="featured-blog-banner">
+          <Image
+            src={featuredPost.image}
+            alt={featuredPost.imageAlt}
+            fill
+            priority
+            sizes="(min-width: 1280px) 1152px, 100vw"
+            className="object-cover object-center opacity-45 transition-transform duration-700 group-hover:scale-[1.02]"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-brand-bg-dark via-brand-bg-dark/90 to-brand-bg-dark/25" />
+          <div className="absolute inset-0 bg-gradient-to-t from-brand-bg-dark via-transparent to-brand-bg-dark/20" />
           <div className="absolute top-0 right-0 w-[450px] h-[300px] bg-brand-orange/[0.025] blur-[120px] pointer-events-none" />
           
           <div className="relative z-10 max-w-2xl flex flex-col items-start justify-between h-full">
@@ -217,20 +274,20 @@ export default function BlogView({ onSelectPost }: BlogViewProps) {
                 ÖNE ÇIKAN
               </span>
               <h1 className="font-display text-2xl md:text-3.5xl lg:text-4xl font-black text-white tracking-tight leading-tight mb-4 group-hover:text-brand-orange transition-colors duration-300">
-                Geleceğin Tanı Teknolojileri: Yapay Zeka ile Motor Analizi
+                {featuredPost.title}
               </h1>
               <p className="text-brand-text-secondary text-xs sm:text-sm md:text-base leading-relaxed mb-8">
-                Modern otomotiv dünyasında artık anahtar sesinden çok veri paketleri konuşuyor. HKN Auto olarak yeni nesil diagnostik süreçlerimizi nasıl evrilttiğimizi keşfedin. Yapay zeka veri modelleri ile otonom kontrol süreçlerini atölyemize entegre ettik.
+                {featuredPost.excerpt}
               </p>
             </div>
 
-            <button
-              onClick={() => onSelectPost('ai-motor-analizi')}
+            <a
+              href={`/blog/${featuredPost.id}`}
               className="font-mono text-xs font-black text-brand-orange flex items-center gap-2 group-hover:translate-x-1.5 transition-transform duration-300 uppercase cursor-pointer"
             >
               <span>DEVAMINI OKU</span>
               <ArrowRight className="w-4 h-4" />
-            </button>
+            </a>
           </div>
         </div>
 
@@ -255,13 +312,25 @@ export default function BlogView({ onSelectPost }: BlogViewProps) {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch mb-20" id="blog-grid-container">
           
           {currentPosts.map((post) => (
-            <div
+            <a
               key={post.id}
-              onClick={() => onSelectPost(post.id)}
-              className="bg-[#131b26] border border-brand-container-hover/80 hover:border-brand-orange/30 rounded-lg p-6 flex flex-col justify-between cursor-pointer group shadow-xl transition-all duration-300 hover:-translate-y-1.5 hover:shadow-brand-orange/5"
+              href={`/blog/${post.id}`}
+              className="bg-[#131b26] border border-brand-container-hover/80 hover:border-brand-orange/30 rounded-lg overflow-hidden flex flex-col cursor-pointer group shadow-xl transition-all duration-300 hover:-translate-y-1.5 hover:shadow-brand-orange/5"
               id={`blog-card-${post.id}`}
             >
-              <div>
+              <div className="relative aspect-[16/10] overflow-hidden bg-brand-bg-dark">
+                <Image
+                  src={post.image}
+                  alt={post.imageAlt}
+                  fill
+                  sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#131b26] via-transparent to-transparent" />
+              </div>
+
+              <div className="p-6 flex flex-1 flex-col justify-between">
+                <div>
                 <div className="flex items-center justify-between text-[10px] font-mono mb-4 text-brand-text-secondary/60">
                   <span className="flex items-center gap-1.5">
                     <Calendar className="w-3.5 h-3.5 text-brand-orange" />
@@ -278,17 +347,18 @@ export default function BlogView({ onSelectPost }: BlogViewProps) {
                 <p className="text-brand-text-secondary text-xs sm:text-sm leading-relaxed mb-6">
                   {post.excerpt}
                 </p>
-              </div>
+                </div>
 
-              <div className="flex items-center justify-between pt-4 border-t border-brand-container-hover/60 text-xs font-mono">
-                <span className="text-brand-text-secondary/40 font-bold uppercase tracking-wider">
-                  SERVIS ID: #{post.serviceId}
-                </span>
-                <span className="text-brand-orange group-hover:translate-x-1.5 transition-transform duration-300">
-                  <ArrowRight className="w-4 h-4" />
-                </span>
+                <div className="flex items-center justify-between pt-4 border-t border-brand-container-hover/60 text-xs font-mono">
+                  <span className="text-brand-text-secondary/40 font-bold uppercase tracking-wider">
+                    SERVIS ID: #{post.serviceId}
+                  </span>
+                  <span className="text-brand-orange group-hover:translate-x-1.5 transition-transform duration-300">
+                    <ArrowRight className="w-4 h-4" />
+                  </span>
+                </div>
               </div>
-            </div>
+            </a>
           ))}
 
         </div>

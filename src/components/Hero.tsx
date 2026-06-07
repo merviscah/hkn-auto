@@ -8,7 +8,7 @@ import heroBgImage from '../assets/images/hero_car_bg_1780270553383.png';
 interface HeroProps {
   onOpenBooking: () => void;
   onScrollTo: (elementId: string) => void;
-  onPageChange: (page: 'home' | 'services' | 'about' | 'blog' | 'contact') => void;
+  onPageChange: (page: 'home' | 'services' | 'about' | 'gallery' | 'blog' | 'contact') => void;
 }
 
 export default function Hero({ onOpenBooking, onScrollTo, onPageChange }: HeroProps) {

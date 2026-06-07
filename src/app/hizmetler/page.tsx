@@ -21,6 +21,8 @@ export default function ServicesPage() {
             'oto ekspertiz Sakarya',
             'periyodik bakım',
             'otomatik şanzıman bakım',
+            'Sakarya çekici ve yol yardım',
+            'ilk 10 km ücretsiz çekici',
           ],
         }}
       />

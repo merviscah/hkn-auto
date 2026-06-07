@@ -17,6 +17,19 @@ export default function ContactPage() {
           description: pages.contact.description,
           isPartOf: { '@id': `${siteConfig.url}/#website` },
           about: { '@id': `${siteConfig.url}/#local-business` },
+          mainEntity: {
+            '@type': 'AutoRepair',
+            '@id': `${siteConfig.url}/#local-business`,
+            name: siteConfig.name,
+            telephone: siteConfig.phone,
+            address: siteConfig.address,
+            hasMap: siteConfig.mapUrl,
+            geo: {
+              '@type': 'GeoCoordinates',
+              latitude: siteConfig.latitude,
+              longitude: siteConfig.longitude,
+            },
+          },
           inLanguage: 'tr-TR',
         }}
       />

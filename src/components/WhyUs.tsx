@@ -3,7 +3,6 @@
 import React from 'react';
 import Image from 'next/image';
 import { Award, Cpu, Eye } from 'lucide-react';
-import diagnosticTabletImage from '../assets/images/diagnostic_tablet_1780270573646.png';
 
 const features = [
   {
@@ -72,11 +71,14 @@ export default function WhyUs() {
             {/* Image card wrapper */}
             <div className="relative rounded-xl overflow-hidden border border-brand-container-hover bg-brand-bg shadow-2xl">
               <Image
-                src={diagnosticTabletImage}
-                alt="HKN Auto arıza tespit tableti ile araç ECU kod taraması ve telemetri veri analiz süreci"
+                src="/images/sections/hkn-auto-sakarya-lift-servis.jpg"
+                alt="HKN Auto Sakarya oto servisinde lift üzerinde BMW ve profesyonel araç bakım alanı"
+                fill
                 sizes="(min-width: 1024px) 50vw, 100vw"
-                className="w-full object-cover aspect-[4/3] group-hover:scale-[1.03] transition duration-700 pointer-events-none"
+                className="object-cover object-center transition duration-700 pointer-events-none group-hover:scale-[1.03] max-lg:object-[42%_center]"
               />
+              <div className="aspect-[4/3] sm:aspect-[16/10] lg:aspect-[4/3]" aria-hidden="true" />
+              <div className="absolute inset-0 bg-gradient-to-t from-brand-bg-dark/40 via-transparent to-transparent" />
             </div>
           </div>
         </div>

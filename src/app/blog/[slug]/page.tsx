@@ -19,12 +19,25 @@ export async function generateMetadata({ params }: BlogPostPageProps) {
     return {};
   }
 
+  const keywords = post.id === 'sakarya-cekici-yol-yardim'
+    ? [
+        'Sakarya çekici',
+        'Sakarya yol yardım',
+        'Sakarya oto kurtarma',
+        'Serdivan çekici',
+        'Adapazarı çekici',
+        'ilk 10 km ücretsiz çekici',
+      ]
+    : ['Sakarya oto servis', 'Sakarya araç bakım', 'oto ekspertiz Sakarya'];
+
   return buildMetadata({
     title: post.title,
     description: post.description,
     path: post.path,
     type: 'article',
-    keywords: ['Sakarya oto servis', 'Sakarya araç bakım', 'oto ekspertiz Sakarya'],
+    keywords,
+    image: post.image,
+    imageAlt: `${post.title} - HKN Auto Sakarya`,
   });
 }
 
@@ -46,7 +59,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           headline: post.title,
           description: post.description,
           url: absoluteUrl(post.path),
-          image: absoluteUrl(siteConfig.image),
+          image: absoluteUrl(post.image),
           author: {
             '@type': 'Organization',
             name: siteConfig.name,

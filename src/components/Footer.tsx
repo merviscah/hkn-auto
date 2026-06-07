@@ -1,11 +1,10 @@
 'use client';
 
 import React from 'react';
-import { Instagram, Mail, Share2, MessageCircle } from 'lucide-react';
-import Logo from './Logo';
+import { Instagram, MessageCircle } from 'lucide-react';
 
 interface FooterProps {
-  onPageChange?: (page: 'home' | 'services' | 'about' | 'blog' | 'contact') => void;
+  onPageChange?: (page: 'home' | 'services' | 'about' | 'gallery' | 'blog' | 'contact') => void;
 }
 
 export default function Footer({ onPageChange }: FooterProps) {
@@ -18,23 +17,20 @@ export default function Footer({ onPageChange }: FooterProps) {
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-8 pb-12 mb-12 border-b border-brand-container-hover/40">
           
-          {/* Logo Brand Info Column */}
+          {/* Brand Info Column */}
           <div className="md:col-span-5 flex flex-col items-start">
-            <div className="flex flex-row flex-wrap items-center gap-4 mb-4">
+            <div className="w-full mb-4 text-left">
               <button
                 onClick={handleScrollToTop}
-                className="group flex items-center gap-3 cursor-pointer text-left focus:outline-none"
+                className="group flex flex-col items-start cursor-pointer text-left focus:outline-none"
                 id="footer-logo"
               >
-                <Logo size={38} className="group-hover:scale-105 transition-transform duration-300" />
-                <div className="flex flex-col -space-y-0.5">
-                  <span className="font-display text-xl font-bold tracking-tighter text-white block leading-none uppercase">
-                    HKN <span className="text-brand-orange font-black italic">AUTO</span>
-                  </span>
-                  <span className="font-mono text-[8px] tracking-[0.2em] text-brand-text-secondary uppercase block leading-none mt-0.5">
-                    ENGINEERED TRUST
-                  </span>
-                </div>
+                <span className="font-display text-xl font-bold tracking-tighter text-white block leading-none uppercase">
+                  HKN <span className="text-brand-orange font-black italic">AUTO</span>
+                </span>
+                <span className="font-mono text-[8px] tracking-[0.2em] text-brand-text-secondary uppercase block leading-none mt-1">
+                  ENGINEERED TRUST
+                </span>
               </button>
             </div>
 
@@ -73,6 +69,14 @@ export default function Footer({ onPageChange }: FooterProps) {
                     className="text-brand-text-secondary hover:text-white transition-colors cursor-pointer text-left focus:outline-none block"
                   >
                     Hakkımızda
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() => onPageChange?.('gallery')}
+                    className="text-brand-text-secondary hover:text-white transition-colors cursor-pointer text-left focus:outline-none block"
+                  >
+                    Galeri
                   </button>
                 </li>
                 <li>
@@ -132,6 +136,14 @@ export default function Footer({ onPageChange }: FooterProps) {
                     Şanzıman Revizyonu
                   </button>
                 </li>
+                <li>
+                  <button
+                    onClick={() => onPageChange?.('services')}
+                    className="text-brand-text-secondary hover:text-white transition-colors cursor-pointer text-left focus:outline-none block"
+                  >
+                    Çekici ve Yol Yardım
+                  </button>
+                </li>
               </ul>
             </div>
 
@@ -151,7 +163,7 @@ export default function Footer({ onPageChange }: FooterProps) {
                 </li>
                 <li>
                   <span className="text-brand-text-secondary text-left block leading-relaxed">
-                    Yeşiltepe Mah. 8016 Sok. No: 6<br />Sakarya Modern Sanayi
+                    Yeşiltepe Mah. 8016 Sok. No: 6<br />Sakarya Moderen Sanayi
                   </span>
                 </li>
                 <li className="pt-1 flex items-center gap-2">

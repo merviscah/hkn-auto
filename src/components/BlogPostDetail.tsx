@@ -1,9 +1,9 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
+import Image from 'next/image';
 import { 
-  ArrowLeft, Calendar, User, Eye, ShieldCheck,
-  CheckCircle2, BookOpen, ExternalLink, ArrowUpRight 
+  ArrowLeft, ShieldCheck, CheckCircle2, BookOpen, ArrowUpRight
 } from 'lucide-react';
 import { BlogPost, BLOG_POSTS } from './BlogView';
 
@@ -37,7 +37,15 @@ export default function BlogPostDetail({ postId, onBackToBlog, onSelectPost, onO
         </button>
 
         {/* Hero Header Area of Blog Detail matching mockup 5 */}
-        <div className="mb-12 rounded-xl overflow-hidden bg-[#111c2d] border border-brand-container-hover relative aspect-[21/9] flex flex-col justify-end p-6 md:p-12 shadow-2xl">
+        <div className="relative mb-12 flex min-h-[460px] flex-col justify-end overflow-hidden rounded-xl border border-brand-container-hover bg-[#111c2d] p-6 shadow-2xl sm:min-h-[500px] md:aspect-[21/9] md:min-h-0 md:p-12">
+          <Image
+            src={post.image}
+            alt={post.imageAlt}
+            fill
+            priority
+            sizes="(min-width: 1280px) 1152px, 100vw"
+            className="object-cover object-center"
+          />
           {/* Subtle grid and overlay */}
           <div 
             className="absolute inset-0 opacity-[0.05] pointer-events-none" 
@@ -46,20 +54,21 @@ export default function BlogPostDetail({ postId, onBackToBlog, onSelectPost, onO
               backgroundSize: '30px 30px'
             }} 
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-brand-bg-dark via-brand-bg-dark/60 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-brand-bg-dark via-brand-bg-dark/70 to-brand-bg-dark/10" />
+          <div className="absolute inset-0 bg-gradient-to-r from-brand-bg-dark/80 via-transparent to-transparent" />
 
-          <div className="relative z-10 max-w-4xl space-y-4">
+          <div className="relative z-10 max-w-4xl space-y-4 pt-24 md:pt-0">
             {/* Category tag bubble in orange */}
             <span className="font-mono text-xs font-bold tracking-widest text-white bg-brand-orange px-3 py-1.5 rounded uppercase block w-fit">
               {post.categoryTag === 'ELECTRONICS' ? 'ELECTRONICS' : post.categoryTag === 'MAINTENANCE' ? 'MAINTENANCE' : 'TECHNOLOGY'}
             </span>
 
-            <h1 className="font-display text-2xl sm:text-3xl md:text-4.5xl font-black text-white tracking-tight leading-tight">
+            <h1 className="break-words font-display text-[clamp(1.65rem,8vw,2.25rem)] font-black leading-[1.08] tracking-normal text-white md:text-4.5xl">
               {post.title}
             </h1>
 
             {/* Author and Date label layout */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 md:gap-8 pt-4 border-t border-brand-container-hover/60 max-w-2xl text-xs font-mono select-none">
+            <div className="grid grid-cols-1 gap-4 border-t border-brand-container-hover/60 pt-4 font-mono text-xs select-none min-[380px]:grid-cols-2 md:max-w-2xl md:grid-cols-4 md:gap-8">
               <div>
                 <span className="text-brand-text-secondary/50 block text-[9px] font-bold uppercase tracking-wider">AUTHOR</span>
                 <span className="text-white font-bold block mt-0.5">{post.author}</span>

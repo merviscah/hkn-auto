@@ -94,5 +94,24 @@ export const SERVICES_DATA: ServiceItem[] = [
         'Yazılımsal vites geçiş kalibrasyonu (Adaptasyon)'
       ]
     }
+  },
+  {
+    id: 'cekici-yol-yardim',
+    title: 'Çekici ve Yol Yardım',
+    description: 'Aracınız yolda kaldığında hızlı çekici ve yol yardım desteği. Çekici hizmetinde ilk 10 km ücretsiz.',
+    iconName: 'Truck',
+    details: {
+      avgTime: 'Konuma Göre 30 - 60 Dakika',
+      priceRange: 'İlk 10 KM Ücretsiz',
+      warranty: '7/24 Yol Yardım Desteği',
+      diagnosticApps: ['Konum Bazlı Hızlı Yönlendirme', 'Güvenli Araç Yükleme', 'Servise Kontrollü Transfer'],
+      steps: [
+        'Telefon veya WhatsApp üzerinden konum bilgilerinin alınması',
+        'En yakın çekici ekibinin yönlendirilmesi',
+        'Aracın güvenli şekilde çekiciye yüklenmesi',
+        'İlk 10 kilometrenin ücretsiz olarak uygulanması',
+        'Aracın HKN Auto servisine veya talep edilen noktaya ulaştırılması'
+      ]
+    }
   }
 ];

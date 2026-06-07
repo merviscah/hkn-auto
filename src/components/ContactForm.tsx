@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Phone, MapPin, Clock, Send, CalendarDays, ClipboardCheck, CheckCircle2, QrCode, MessageCircle } from 'lucide-react';
+import { Phone, MapPin, Clock, CheckCircle2, MessageCircle, ExternalLink } from 'lucide-react';
 import { Appointment } from '../types';
 
 interface ContactFormProps {
@@ -78,6 +78,7 @@ export default function ContactForm({ preselectedService, onAppointmentBooked, b
     'Ön Takım Tamiri',
     'Elektronik Çözümler',
     'Şanzıman Onarım',
+    'Çekici ve Yol Yardım - İlk 10 KM Ücretsiz',
     'Sadece Soru/Talep Gönderimi'
   ];
 
@@ -163,7 +164,8 @@ export default function ContactForm({ preselectedService, onAppointmentBooked, b
                   <div>
                     <span className="text-sm font-bold text-white block">Adresimiz</span>
                     <span className="text-brand-text-secondary text-sm transition-colors block mt-1 leading-relaxed">
-                      Yeşiltepe Mah. 8016 Sok. No: 6, Sakarya Modern Sanayi
+                      Yeşiltepe Mah. 8016 Sok. No: 6<br />
+                      Sakarya Moderen Sanayi
                     </span>
                   </div>
                 </div>
@@ -273,6 +275,34 @@ export default function ContactForm({ preselectedService, onAppointmentBooked, b
             </div>
           </div>
 
+        </div>
+
+        <div className="mt-16 overflow-hidden rounded-lg border border-brand-container-hover bg-[#131b26] shadow-2xl">
+          <div className="flex flex-col gap-4 border-b border-brand-container-hover p-5 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <h2 className="font-display text-lg font-bold text-white">HKN Auto Sakarya Konumu</h2>
+              <p className="mt-1 text-xs leading-relaxed text-brand-text-secondary">
+                Yeşiltepe Mah. 8016 Sok. No: 6, Sakarya Moderen Sanayi
+              </p>
+            </div>
+            <a
+              href="https://maps.app.goo.gl/FSTxF46a9AhBJzYB8"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex shrink-0 items-center justify-center gap-2 rounded bg-brand-orange px-4 py-3 font-display text-xs font-bold uppercase tracking-wide text-white transition-colors hover:bg-brand-orange-hover"
+            >
+              Google Haritalar&apos;da Aç
+              <ExternalLink className="h-4 w-4" />
+            </a>
+          </div>
+          <iframe
+            title="HKN Auto Sakarya Moderen Sanayi konumu"
+            src="https://www.google.com/maps?q=40.7364412,30.3860991&z=17&output=embed"
+            className="h-[360px] w-full border-0 md:h-[460px]"
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            allowFullScreen
+          />
         </div>
       </div>
 

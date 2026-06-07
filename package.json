@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "node dev.js",
     "build": "next build",
-    "preview": "vite preview",
+    "preview": "node preview-server.js",
+    "local": "node preview-server.js",
     "clean": "rm -rf dist .next out",
     "lint": "tsc --noEmit"
   },

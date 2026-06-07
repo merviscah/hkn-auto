@@ -11,15 +11,17 @@ import Footer from './components/Footer';
 // New high-fidelity views added according to precision design requirements
 import ServicesView from './components/ServicesView';
 import AboutView from './components/AboutView';
+import GalleryView from './components/GalleryView';
 import BlogView from './components/BlogView';
 import BlogPostDetail from './components/BlogPostDetail';
 
-type PageName = 'home' | 'services' | 'about' | 'blog' | 'blog-detail' | 'contact';
+type PageName = 'home' | 'services' | 'about' | 'gallery' | 'blog' | 'blog-detail' | 'contact';
 
 const pageRoutes: Record<Exclude<PageName, 'blog-detail'>, string> = {
   home: '/',
   services: '/hizmetler',
   about: '/hakkimizda',
+  gallery: '/galeri',
   blog: '/blog',
   contact: '/iletisim',
 };
@@ -55,7 +57,7 @@ export default function App({ initialPage = 'home', initialBlogPostId = 'ai-moto
     window.scrollTo(0, 0);
   }, []);
 
-  const handlePageChange = useCallback((page: 'home' | 'services' | 'about' | 'blog' | 'contact') => {
+  const handlePageChange = useCallback((page: 'home' | 'services' | 'about' | 'gallery' | 'blog' | 'contact') => {
     const route = pageRoutes[page];
     if (window.location.pathname !== route) {
       window.location.assign(route);
@@ -67,9 +69,7 @@ export default function App({ initialPage = 'home', initialBlogPostId = 'ai-moto
   }, []);
 
   const handleSelectBlogPost = useCallback((postId: string) => {
-    setSelectedBlogPostId(postId);
-    setCurrentPage('blog-detail');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.location.assign(`/blog/${postId}`);
   }, []);
 
   return (
@@ -124,6 +124,12 @@ export default function App({ initialPage = 'home', initialBlogPostId = 'ai-moto
             <AboutView
               onOpenBooking={handleOpenBooking}
             />
+          </div>
+        )}
+
+        {currentPage === 'gallery' && (
+          <div key="gallery" className="w-full animate-page-enter">
+            <GalleryView />
           </div>
         )}
 

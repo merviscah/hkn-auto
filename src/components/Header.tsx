@@ -1,13 +1,11 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
-import { Menu, X, Phone } from 'lucide-react';
-import Logo from './Logo';
 
 interface HeaderProps {
   onOpenBooking: () => void;
   activePage: string;
-  onPageChange: (page: 'home' | 'services' | 'about' | 'blog' | 'contact') => void;
+  onPageChange: (page: 'home' | 'services' | 'about' | 'gallery' | 'blog' | 'contact') => void;
 }
 
 export default function Header({ onOpenBooking, activePage, onPageChange }: HeaderProps) {
@@ -19,6 +17,11 @@ export default function Header({ onOpenBooking, activePage, onPageChange }: Head
 
   useEffect(() => {
     mobileMenuOpenRef.current = mobileMenuOpen;
+    document.body.style.overflow = mobileMenuOpen ? 'hidden' : '';
+
+    return () => {
+      document.body.style.overflow = '';
+    };
   }, [mobileMenuOpen]);
 
   useEffect(() => {
@@ -55,7 +58,7 @@ export default function Header({ onOpenBooking, activePage, onPageChange }: Head
     };
   }, []);
 
-  const handleNavClick = (page: 'home' | 'services' | 'about' | 'blog' | 'contact') => {
+  const handleNavClick = (page: 'home' | 'services' | 'about' | 'gallery' | 'blog' | 'contact') => {
     setMobileMenuOpen(false);
     onPageChange(page);
     window.scrollTo(0, 0);
@@ -75,25 +78,22 @@ export default function Header({ onOpenBooking, activePage, onPageChange }: Head
           {/* Logo */}
           <button
             onClick={() => handleNavClick('home')}
-            className="group flex items-center gap-3 cursor-pointer text-left focus:outline-none"
+            className="group flex flex-col items-start cursor-pointer text-left focus:outline-none"
             id="logo-button"
           >
-            <Logo size={44} className="group-hover:scale-105 transition-transform duration-300" />
-            <div className="flex flex-col -space-y-0.5">
-              <span className="font-display text-2xl font-bold tracking-tighter text-white block leading-none uppercase">
-                HKN <span className="text-brand-orange font-black italic">AUTO</span>
-              </span>
-              <span className="font-mono text-[9px] tracking-[0.2em] text-brand-text-secondary group-hover:text-brand-orange transition-colors uppercase block leading-none mt-0.5">
-                ENGINEERED TRUST
-              </span>
-            </div>
+            <span className="font-display text-2xl font-bold tracking-tighter text-white block leading-none uppercase">
+              HKN <span className="text-brand-orange font-black italic">AUTO</span>
+            </span>
+            <span className="font-mono text-[9px] tracking-[0.2em] text-brand-text-secondary group-hover:text-brand-orange transition-colors uppercase block leading-none mt-1">
+              ENGINEERED TRUST
+            </span>
           </button>
 
           {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-8" id="desktop-nav">
+          <nav className="hidden md:flex items-center gap-4 lg:gap-8" id="desktop-nav">
             <button
                onClick={() => handleNavClick('home')}
-               className={`font-medium text-sm transition-colors cursor-pointer ${
+               className={`font-medium text-xs lg:text-sm transition-colors cursor-pointer ${
                  activePage === 'home' ? 'text-brand-orange' : 'text-brand-text-secondary hover:text-white'
                }`}
              >
@@ -101,7 +101,7 @@ export default function Header({ onOpenBooking, activePage, onPageChange }: Head
              </button>
              <button
                onClick={() => handleNavClick('services')}
-               className={`font-medium text-sm transition-colors cursor-pointer ${
+               className={`font-medium text-xs lg:text-sm transition-colors cursor-pointer ${
                  activePage === 'services' ? 'text-brand-orange' : 'text-brand-text-secondary hover:text-white'
                }`}
              >
@@ -109,15 +109,23 @@ export default function Header({ onOpenBooking, activePage, onPageChange }: Head
              </button>
              <button
                onClick={() => handleNavClick('about')}
-               className={`font-medium text-sm transition-colors cursor-pointer ${
+               className={`font-medium text-xs lg:text-sm transition-colors cursor-pointer ${
                  activePage === 'about' ? 'text-brand-orange' : 'text-brand-text-secondary hover:text-white'
                }`}
              >
                Hakkımızda
              </button>
              <button
+               onClick={() => handleNavClick('gallery')}
+               className={`font-medium text-xs lg:text-sm transition-colors cursor-pointer ${
+                 activePage === 'gallery' ? 'text-brand-orange' : 'text-brand-text-secondary hover:text-white'
+               }`}
+             >
+               Galeri
+             </button>
+             <button
                onClick={() => handleNavClick('blog')}
-               className={`font-medium text-sm transition-colors cursor-pointer ${
+               className={`font-medium text-xs lg:text-sm transition-colors cursor-pointer ${
                  activePage === 'blog' || activePage === 'blog-detail' ? 'text-brand-orange' : 'text-brand-text-secondary hover:text-white'
                }`}
              >
@@ -125,7 +133,7 @@ export default function Header({ onOpenBooking, activePage, onPageChange }: Head
              </button>
              <button
                onClick={() => handleNavClick('contact')}
-               className={`font-medium text-sm transition-colors cursor-pointer ${
+               className={`font-medium text-xs lg:text-sm transition-colors cursor-pointer ${
                  activePage === 'contact' ? 'text-brand-orange' : 'text-brand-text-secondary hover:text-white'
                }`}
              >
@@ -167,18 +175,18 @@ export default function Header({ onOpenBooking, activePage, onPageChange }: Head
          }`}
        />
 
-       {/* Slide-down Dropdown (60% height) with ultra smooth transition */}
+       {/* Rounded slide-down mobile navigation */}
        <div
-         className={`fixed top-0 inset-x-0 h-[60vh] min-h-[460px] z-50 md:hidden bg-[#040e1f] bg-gradient-to-b from-[#051126] via-[#030b18] to-[#01060f] border-b border-brand-container-hover/50 p-6 pt-24 flex flex-col justify-between overflow-y-auto shadow-2xl rounded-b-3xl transition-transform duration-500 ease-out ${
+         className={`fixed inset-x-0 top-0 z-50 flex h-[78dvh] max-h-[720px] min-h-[520px] flex-col overflow-y-auto rounded-b-3xl border-b border-brand-container-hover/50 bg-[#040e1f] bg-gradient-to-b from-[#051126] via-[#030b18] to-[#01060f] px-6 pb-[max(1.25rem,env(safe-area-inset-bottom))] pt-24 shadow-2xl transition-transform duration-500 ease-out md:hidden ${
            mobileMenuOpen ? 'translate-y-0' : '-translate-y-full'
          }`}
          id="mobile-drawer"
        >
          {/* Vertically Centered Big Link List with 60% Height structure */}
-         <div className="flex flex-col gap-4 py-4 border-t border-brand-container-hover/20 animate-[pageEnter_350ms_ease-out_100ms_both]">
+         <div className="flex flex-col gap-2 border-t border-brand-container-hover/20 py-4 animate-[pageEnter_350ms_ease-out_100ms_both]">
            <button
              onClick={() => handleNavClick('home')}
-             className={`text-left font-display text-2xl font-black tracking-tight transition-all duration-300 py-1 ${
+             className={`py-2 text-left font-display text-[clamp(1.35rem,7vw,1.75rem)] font-black tracking-normal transition-all duration-300 ${
                activePage === 'home' ? 'text-brand-orange scale-[1.01]' : 'text-slate-100 hover:text-brand-orange hover:translate-x-1'
              }`}
            >
@@ -186,7 +194,7 @@ export default function Header({ onOpenBooking, activePage, onPageChange }: Head
            </button>
            <button
              onClick={() => handleNavClick('services')}
-             className={`text-left font-display text-2xl font-black tracking-tight transition-all duration-300 py-1 ${
+             className={`py-2 text-left font-display text-[clamp(1.35rem,7vw,1.75rem)] font-black tracking-normal transition-all duration-300 ${
                activePage === 'services' ? 'text-brand-orange scale-[1.01]' : 'text-slate-100 hover:text-brand-orange hover:translate-x-1'
              }`}
            >
@@ -194,15 +202,23 @@ export default function Header({ onOpenBooking, activePage, onPageChange }: Head
            </button>
            <button
              onClick={() => handleNavClick('about')}
-             className={`text-left font-display text-2xl font-black tracking-tight transition-all duration-300 py-1 ${
+             className={`py-2 text-left font-display text-[clamp(1.35rem,7vw,1.75rem)] font-black tracking-normal transition-all duration-300 ${
                activePage === 'about' ? 'text-brand-orange scale-[1.01]' : 'text-slate-100 hover:text-brand-orange hover:translate-x-1'
              }`}
            >
              Hakkımızda
            </button>
            <button
+             onClick={() => handleNavClick('gallery')}
+             className={`py-2 text-left font-display text-[clamp(1.35rem,7vw,1.75rem)] font-black tracking-normal transition-all duration-300 ${
+               activePage === 'gallery' ? 'text-brand-orange scale-[1.01]' : 'text-slate-100 hover:text-brand-orange hover:translate-x-1'
+             }`}
+           >
+             Galeri
+           </button>
+           <button
              onClick={() => handleNavClick('blog')}
-             className={`text-left font-display text-2xl font-black tracking-tight transition-all duration-300 py-1 ${
+             className={`py-2 text-left font-display text-[clamp(1.35rem,7vw,1.75rem)] font-black tracking-normal transition-all duration-300 ${
                activePage === 'blog' || activePage === 'blog-detail' ? 'text-brand-orange scale-[1.01]' : 'text-slate-100 hover:text-brand-orange hover:translate-x-1'
              }`}
            >
@@ -210,7 +226,7 @@ export default function Header({ onOpenBooking, activePage, onPageChange }: Head
            </button>
            <button
              onClick={() => handleNavClick('contact')}
-             className={`text-left font-display text-2xl font-black tracking-tight transition-all duration-300 py-1 ${
+             className={`py-2 text-left font-display text-[clamp(1.35rem,7vw,1.75rem)] font-black tracking-normal transition-all duration-300 ${
                activePage === 'contact' ? 'text-brand-orange scale-[1.01]' : 'text-slate-100 hover:text-brand-orange hover:translate-x-1'
              }`}
            >
@@ -219,7 +235,7 @@ export default function Header({ onOpenBooking, activePage, onPageChange }: Head
          </div>
 
          {/* Contact inquiries matching screenshot */}
-         <div className="py-4 border-t border-brand-container-hover/20 text-left font-sans text-[10px]">
+         <div className="mt-auto border-t border-brand-container-hover/20 py-4 text-left font-sans text-[10px]">
            <div>
              <span className="text-slate-500 block uppercase tracking-wider font-semibold">7/24 Destek</span>
              <a 
@@ -234,7 +250,7 @@ export default function Header({ onOpenBooking, activePage, onPageChange }: Head
          </div>
          
          {/* Bottom Booking Button */}
-         <div className="pt-4 border-t border-brand-container-hover/20">
+         <div className="border-t border-brand-container-hover/20 pt-4">
            <button
              onClick={() => {
                setMobileMenuOpen(false);

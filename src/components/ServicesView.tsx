@@ -3,7 +3,7 @@
 import React from 'react';
 import {
   Wrench, Cpu, Sliders, ShieldCheck, Activity, Calendar,
-  Check, ArrowRight, Gauge, AlertCircle, Eye, Settings, HelpCircle
+  Check, ArrowRight, Gauge, AlertCircle, Eye, Settings, HelpCircle, Truck
 } from 'lucide-react';
 
 interface ServicesViewProps {
@@ -116,8 +116,8 @@ export default function ServicesView({ onOpenBooking, onScrollToContact }: Servi
 
             </div>
 
-            {/* Lower row of 3 smaller cards */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24" id="lower-service-row">
+            {/* Lower service cards */}
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 mb-24" id="lower-service-row">
 
               {/* Ön Takım Tamiri */}
               <div className="bg-[#111c2d] border border-brand-container-hover hover:border-brand-orange/20 transition-all rounded p-6 flex flex-col justify-between min-h-[220px] group" id="lower-service-on-takim">
@@ -185,6 +185,32 @@ export default function ServicesView({ onOpenBooking, onScrollToContact }: Servi
                     <div className="h-full bg-brand-orange w-[75%] rounded-full" />
                   </div>
                 </div>
+              </div>
+
+              {/* Çekici ve Yol Yardım */}
+              <div className="bg-[#111c2d] border border-brand-orange/30 hover:border-brand-orange/60 transition-all rounded p-6 flex flex-col justify-between min-h-[220px] group relative overflow-hidden" id="lower-service-cekici">
+                <div className="absolute top-4 right-4 rounded border border-brand-orange/30 bg-brand-orange/10 px-2 py-1 font-mono text-[8px] font-black uppercase tracking-wider text-brand-orange">
+                  İlk 10 KM Ücretsiz
+                </div>
+
+                <div>
+                  <div className="p-2 bg-brand-bg-dark border border-brand-container-hover text-brand-orange rounded w-fit mb-4">
+                    <Truck className="w-5 h-5" />
+                  </div>
+                  <h4 className="font-display font-bold text-white text-base mb-2 group-hover:text-brand-orange transition-colors">
+                    Çekici ve Yol Yardım
+                  </h4>
+                  <p className="text-brand-text-secondary text-xs sm:text-sm leading-relaxed mb-4">
+                    Aracınız yolda kaldığında hızlı çekici yönlendirmesi ve güvenli transfer desteği. Çekici hizmetinde ilk 10 kilometre ücretsizdir.
+                  </p>
+                </div>
+
+                <button
+                  onClick={onOpenBooking}
+                  className="font-mono text-[10px] font-bold text-brand-orange flex items-center gap-1 hover:translate-x-1.5 transition-transform"
+                >
+                  YOL YARDIM TALEBİ <ArrowRight className="w-3 h-3" />
+                </button>
               </div>
 
             </div>

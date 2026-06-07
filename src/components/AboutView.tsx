@@ -1,7 +1,8 @@
 'use client';
 
 import React from 'react';
-import { Milestone, Shield, ShieldCheck, ArrowRight } from 'lucide-react';
+import Image from 'next/image';
+import { Milestone, Shield, ArrowRight } from 'lucide-react';
 
 interface AboutViewProps {
   onOpenBooking: () => void;
@@ -39,34 +40,15 @@ export default function AboutView({ onOpenBooking }: AboutViewProps) {
         </div>
 
         {/* Custom Visual: Mechanic Service Bay Image & Frame styling */}
-        <div className="w-full relative rounded-xl border border-brand-container-hover/60 overflow-hidden mb-24 aspect-[21/9] bg-gradient-to-r from-brand-bg-dark to-brand-container shadow-2xl flex items-center justify-center">
-          {/* Futuristic grid overlay */}
-          <div 
-            className="absolute inset-0 opacity-[0.05] pointer-events-none" 
-            style={{
-              backgroundImage: `
-                linear-gradient(to right, #ffffff 1px, transparent 1px),
-                linear-gradient(to bottom, #ffffff 1px, transparent 1px)
-              `,
-              backgroundSize: '40px 40px'
-            }} 
+        <div className="relative mb-24 aspect-[4/3] w-full overflow-hidden rounded-xl border border-brand-container-hover/60 bg-brand-bg-dark shadow-2xl sm:aspect-[16/9] lg:aspect-[21/9]">
+          <Image
+            src="/images/sections/hkn-auto-sakarya-teshis-laboratuvari.jpg"
+            alt="HKN Auto Sakarya teşhis laboratuvarı ve motor mekanik servis cephesi"
+            fill
+            priority
+            sizes="(min-width: 1280px) 1152px, 100vw"
+            className="object-cover object-center"
           />
-          <div className="absolute inset-0 bg-brand-orange/[0.04] mix-blend-color" />
-          
-          {/* Content Graphic / Title */}
-          <div className="relative text-center p-8 z-10 space-y-3">
-            <div className="inline-flex p-3 bg-brand-bg/85 border border-brand-orange/30 rounded-full text-brand-orange animate-pulse mb-2 scale-110">
-              <ShieldCheck className="w-8 h-8" />
-            </div>
-            <h3 className="font-mono text-white text-xs tracking-widest font-black uppercase">
-              HKN AUTO TEŞHİS LABORATUVARI
-            </h3>
-            <p className="text-brand-text-secondary text-xs sm:text-xs tracking-wider max-w-sm mx-auto font-mono uppercase bg-brand-bg-dark/80 py-1.5 px-3 rounded border border-brand-container-hover">
-              SİSTEM DURUMU: AKTİF ÇALIŞMA // %100 HAZIR
-            </p>
-          </div>
-          {/* Bottom styling line */}
-          <div className="absolute bottom-0 inset-x-0 h-1 bg-gradient-to-r from-transparent via-brand-orange to-transparent" />
         </div>
 
         {/* Phase Timeline List Section */}

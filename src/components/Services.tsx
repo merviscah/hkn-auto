@@ -13,7 +13,8 @@ import {
   Coins,
   ShieldCheck,
   CheckCircle,
-  ArrowRight
+  ArrowRight,
+  Truck
 } from 'lucide-react';
 import { SERVICES_DATA } from '../data/services';
 import { ServiceItem } from '../types';
@@ -48,6 +49,8 @@ export default function Services({ onSelectService }: ServicesProps) {
         return <Sliders className="w-6 h-6 text-brand-orange" />;
       case 'Activity':
         return <Activity className="w-6 h-6 text-brand-orange" />;
+      case 'Truck':
+        return <Truck className="w-6 h-6 text-brand-orange" />;
       default:
         return <Wrench className="w-6 h-6 text-brand-orange" />;
     }
@@ -144,6 +147,11 @@ export default function Services({ onSelectService }: ServicesProps) {
                   <div className="p-2.5 bg-brand-bg-dark rounded border border-brand-container-hover group-hover:bg-brand-orange/10 group-hover:border-brand-orange/20 transition-all">
                     {getIconComponent(service.iconName)}
                   </div>
+                  {service.id === 'cekici-yol-yardim' && (
+                    <span className="rounded border border-brand-orange/30 bg-brand-orange/10 px-2 py-1 font-mono text-[9px] font-black uppercase tracking-wider text-brand-orange">
+                      İlk 10 KM Ücretsiz
+                    </span>
+                  )}
                 </div>
                 <h3 className="font-display text-md md:text-lg font-bold text-white mb-2 group-hover:text-brand-orange transition-colors font-sans">
                   {service.title}
